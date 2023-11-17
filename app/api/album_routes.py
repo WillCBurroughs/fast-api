@@ -3,14 +3,14 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.models.album_model import Album, AlbumCreate
 from app.schemas.album_schema import AlbumBase
-from app.controllers.album_controller import *
+from app.controllers.album_controller import get_albums as get_albums_controller
 from database import get_db
 
 router = APIRouter(prefix="/albums")
 
 @router.get("/", response_model=List[AlbumBase]) 
 def get_albums(db: Session = Depends(get_db)):
-    albums_list = crud.get_Album_list(db)
+    albums_list = get_albums_controller(db)
     return albums_list
 
 @router.get("/{album_id}", response_model=AlbumBase)
