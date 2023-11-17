@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from models import Album
-from schemas import AlbumCreate, AlbumUpdate
+from app.models.album_model import Album
+from app.schemas.album_schema import AlbumCreate, AlbumUpdate
 
 def get_album(db: Session, album_id: int):
     return db.query(Album).filter(Album.id == album_id).first()

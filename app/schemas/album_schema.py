@@ -1,8 +1,8 @@
-from typing import Optional
-
 from pydantic import BaseModel
 
-class Album(BaseModel):
+class AlbumBase(BaseModel):
     id: int
-    name: str 
+    title: str 
 
+    class Config:
+        orm_mode = True

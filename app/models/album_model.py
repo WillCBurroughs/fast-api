@@ -2,6 +2,7 @@ from typing import Optional
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Text, Float
 from sqlalchemy.orm import relationship
 from database import Base
+from pydantic import BaseModel
 
 class Album(Base):
     __tablename__ = "AlbumList"
@@ -15,3 +16,10 @@ class Album(Base):
 
     def __repr__(self) -> str:
         return f"Album(id={self.id!r}, title={self.title!r})"
+
+class AlbumCreate(BaseModel):
+    title: str
+
+    class Config:
+        orm_mode = True
+
